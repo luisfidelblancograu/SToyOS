@@ -2,7 +2,14 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
+
+#include "cabeceras.h"
 #include "module_basic.h"
+#include "module_copy.h"
+#include "module_delete.h"
+#include "module_info.h"
+#include "module_print.h"
+#include "module_rename.h"
 
 
 #define LONGITUD_COMANDO 100
@@ -10,11 +17,13 @@
 int main()
 {
 
-  char *comando[LONGITUD_COMANDO], *orden[LONGITUD_COMANDO], *argumento1[LONGITUD_COMANDO], *argumento2[LONGITUD_COMANDO];
+  char* comando = malloc(sizeof(char) * LONGITUD_COMANDO);
+  char* orden = malloc(sizeof(char) * LONGITUD_COMANDO);
+  char* argumento1 = malloc(sizeof(char) * LONGITUD_COMANDO);
+  char* argumento2 = malloc(sizeof(char) * LONGITUD_COMANDO);
 
-  /*
 
-  int i,j,entradadir, grabardatos;
+  int i,j,entradadir, grabardatos, codeOutput;
   unsigned long int m;
   EXT_SIMPLE_SUPERBLOCK ext_superblock;
   EXT_BYTE_MAPS ext_bytemaps;
@@ -23,8 +32,6 @@ int main()
   EXT_DATOS memdatos[MAX_BLOQUES_DATOS];
   EXT_DATOS datosfich[MAX_BLOQUES_PARTICION];
   FILE *fent;
-
-  */
 
   /*
 
@@ -44,6 +51,53 @@ int main()
     fflush(stdin);
     fgets(comando, LONGITUD_COMANDO, stdin);
 
-    
+    codeOutput = comprobarComando(comando, orden, argumento1, argumento2);
+
+    if (codeOutput == 0) {
+      printf("Apagando el equipo...\n");
+      salir();
+    }
+    else if (codeOutput >= 1) {
+      switch (codeOutput)
+      {
+      case 1:
+        /* code */
+        break;
+
+      case 2:
+        /* code */
+        break;
+
+      case 3:
+        /* code */
+        break;
+
+      case 4:
+        /* code */
+        break;
+
+      case 5:
+        /* code */
+        break;
+
+      case 6:
+        /* code */
+        break;
+
+      case 7:
+        /* code */
+        break;
+
+      case 8:
+        /* code */
+        break;
+      
+      default:
+        break;
+      }
+    }
+
+    printf("\n");
+
   }
 }

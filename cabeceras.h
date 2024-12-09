@@ -1,3 +1,7 @@
+#ifndef CABECERAS_H
+#define CABECERAS_H
+
+
 #define SIZE_BLOQUE 512
 #define MAX_INODOS 24
 #define MAX_FICHEROS 20
@@ -50,3 +54,5 @@ typedef struct {
 typedef struct{
   unsigned char dato[SIZE_BLOQUE]; 	
 } EXT_DATOS;
+
+#endif
