@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include "/modules/cabeceras.h"
+#include "cabeceras.h"
 
 #define LONGITUD_COMANDO 100
 
@@ -17,7 +17,6 @@ int main(){
    EXT_ENTRADA_DIR directorio[MAX_FICHEROS];
    EXT_DATOS memdatos[MAX_BLOQUES_DATOS];
    EXT_DATOS datosfich[MAX_BLOQUES_PARTICION];
-   int 
    FILE *fent;
 
    // Lectura del fichero completo de una sola vez
@@ -38,12 +37,15 @@ int main(){
       } 
       while (ComprobarComando(comando,orden,argumento1,argumento2) !=0);
       
+      // Ordenes
       if (strcmp(orden,"dir") == 0) {
-         Directorio(&directorio,&ext_blq_inodos);
+         //Directorio(&directorio,&ext_blq_inodos);
+         printf("Abrir directorio");
          continue;
       }   
       
-      // Escritura de metadatos en comandos rename, remove, copy     
+
+      /* Escritura de metadatos en comandos rename, remove, copy     
       Grabarinodosydirectorio(&directorio,&ext_blq_inodos,fent);
       GrabarByteMaps(&ext_bytemaps,fent);
       GrabarSuperBloque(&ext_superblock,fent);
@@ -51,7 +53,7 @@ int main(){
          GrabarDatos(&memdatos,fent);
       }
       grabardatos = 0;
-
+      */
       //Si el comando es salir se habrán escrito todos los metadatos
       //faltan los datos y cerrar
       if (strcmp(orden,"salir") == 0){
