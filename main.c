@@ -33,8 +33,6 @@ int main()
   EXT_DATOS datosfich[MAX_BLOQUES_PARTICION];
   FILE *fent;
 
-  /* 
-  TODO: HABILITAR
   // Lectura del fichero completo de una sola vez
   fent = fopen("particion.bin","r+b");
   fread(&datosfich, SIZE_BLOQUE, MAX_BLOQUES_PARTICION, fent);
@@ -43,8 +41,6 @@ int main()
   memcpy(&ext_bytemaps,(EXT_BLQ_INODOS *)&datosfich[1], SIZE_BLOQUE);
   memcpy(&ext_blq_inodos,(EXT_BLQ_INODOS *)&datosfich[2], SIZE_BLOQUE);
   memcpy(&memdatos,(EXT_DATOS *)&datosfich[4],MAX_BLOQUES_DATOS*SIZE_BLOQUE);
-
-  */
 
   while (1) {
     printf(">> ");
@@ -56,7 +52,7 @@ int main()
     switch (codeOutput) {
       case 0: // ORDEN SALIR
         printf("Apagando el equipo...\n");
-        // salir(&memdatos, fent);
+        salir(memdatos, fent);
         break;
 
       case 1: // ORDEN DIRECTORIO
@@ -80,11 +76,11 @@ int main()
         break;
 
       case 5: // ORDEN INFO
-        /* code */
+        info(&ext_superblock);
         break;
 
       case 6: // ORDEN BYTEMAPS
-        /* code */
+        printByteMaps(&ext_bytemaps);
         break;
 
       case 7: // ORDEN PRINT
@@ -93,9 +89,6 @@ int main()
 
       case 8: // ORDEN HELP
         help();
-        break;
-      
-      default:
         break;
       }
 

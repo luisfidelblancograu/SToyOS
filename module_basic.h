@@ -28,9 +28,12 @@ int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argu
   int codeOutput = -1;
 
   sscanf(strcomando, "%s %s %s", orden, argumento1, argumento2);
+
+  /*
   printf("Orden: %s\n", orden);
   printf("Argumento 1: %s\n", argumento1);
   printf("Argumento 2: %s\n", argumento2);
+  */
 
   // COMANDO ==> NUMERO
   // exit ==> 0
@@ -54,7 +57,7 @@ int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argu
     }
 
   }
-  else if (codeOutput == 1 || codeOutput == 3 || codeOutput == 5 || codeOutput == 7) { // COMANDOS CON UN PARAMETRO
+  else if (codeOutput == 1 || codeOutput == 3 || codeOutput == 7) { // COMANDOS CON UN PARAMETRO
     if (strcmp(argumento1, "") == 0) {
       printf("Error: Faltan argumentos\n");
       codeOutput = -1;
@@ -65,11 +68,14 @@ int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argu
     }
 
   }
-  else if (codeOutput == 0 || codeOutput == 6 || codeOutput == 8) { // COMANDOS SIN PARAMETROS
+  else if (codeOutput == 0 || codeOutput == 6 || codeOutput == 8 || codeOutput == 5) { // COMANDOS SIN PARAMETROS
     if (strcmp(argumento1, "") != 0 || strcmp(argumento2, "") != 0) {
       printf("Error: Demasiados argumentos\n");
       codeOutput = -1;
     }
+  }
+  else {
+    printf("Error: Comando no reconocido\n");
   }
 
   return codeOutput;
@@ -105,7 +111,7 @@ void salir(EXT_DATOS* memDatos, FILE* fent) {
 
   //TODO: Si el comando es salir se habrán escrito todos los metadatos
   //TODO: faltan los datos y cerrar
-  grabarDatos(memDatos, fent);
+  // grabarDatos(memDatos, fent);
   fclose(fent);
 
   exit(0);
