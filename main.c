@@ -56,18 +56,19 @@ int main()
     switch (codeOutput) {
       case 0: // ORDEN SALIR
         printf("Apagando el equipo...\n");
-        salir(&memdatos, fent);
+        // salir(&memdatos, fent);
         break;
 
       case 1: // ORDEN DIRECTORIO
-        dir(&directorio,&ext_blq_inodos);
+        // dir(directorio,&ext_blq_inodos);
         break;
 
       case 2: // ORDEN RENAME
       case 3: // ORDEN REMOVE
       case 4: // ORDEN COPY
 
-        // Escritura de metadatos en comandos rename, remove, copy     
+        // Escritura de metadatos en comandos rename, remove, copy  
+        /*   
         grabarinodosydirectorio(&directorio,&ext_blq_inodos,fent);
         grabarByteMaps(&ext_bytemaps,fent);
         grabarSuperBloque(&ext_superblock,fent);
@@ -75,22 +76,23 @@ int main()
           grabarDatos(&memdatos,fent);
         }
         grabardatos = 0;
+        */
         break;
 
-      case 5:
+      case 5: // ORDEN INFO
         /* code */
         break;
 
-      case 6:
+      case 6: // ORDEN BYTEMAPS
         /* code */
         break;
 
-      case 7:
+      case 7: // ORDEN PRINT
         /* code */
         break;
 
-      case 8:
-        /* code */
+      case 8: // ORDEN HELP
+        help();
         break;
       
       default:
