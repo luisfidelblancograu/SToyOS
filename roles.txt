@@ -1,0 +1,12 @@
+PEDRO:
+dir
+imprimir
+remove
+copy
+
+FIDEL:
+comprobarComando
+info
+bytemaps
+main
+rename
