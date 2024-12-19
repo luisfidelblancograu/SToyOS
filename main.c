@@ -84,11 +84,15 @@ int main()
         break;
 
       case 7: // ORDEN PRINT
-        /* code */
+        print(directorio, &ext_blq_inodos, memdatos, argumento1);
         break;
 
       case 8: // ORDEN HELP
         help();
+        break;
+
+      case 9: // ORDEN DEBUG (SOLO PARA DESARROLLADORES) (EDITA EL CODIGO PARA LLAMAR LA FUNCION DESEADA)
+        printMemDatos(memdatos);
         break;
       }
 
