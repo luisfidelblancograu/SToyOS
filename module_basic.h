@@ -27,6 +27,11 @@ int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argu
 
   int codeOutput = -1;
 
+  // RESET PARAMETROS POR NUEVO COMANDO EN COLA
+  strcpy(orden, "");
+  strcpy(argumento1, "");
+  strcpy(argumento2, "");
+
   sscanf(strcomando, "%s %s %s", orden, argumento1, argumento2);
 
   /*
@@ -45,8 +50,9 @@ int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argu
   // bytemaps ==> 6
   // print ==> 7
   // help ==> 8
+  // debug ==> 9
 
-  for (int i = 0; i < 9; i++) {
+  for (int i = 0; i <= 9; i++) {
     if (strcmp(orden, comandos[i]) == 0) codeOutput = i;
   }
 
@@ -57,7 +63,7 @@ int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argu
     }
 
   }
-  else if (codeOutput == 1 || codeOutput == 3 || codeOutput == 7) { // COMANDOS CON UN PARAMETRO
+  else if (codeOutput == 3 || codeOutput == 7) { // COMANDOS CON UN PARAMETRO
     if (strcmp(argumento1, "") == 0) {
       printf("Error: Faltan argumentos\n");
       codeOutput = -1;
@@ -68,7 +74,7 @@ int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argu
     }
 
   }
-  else if (codeOutput == 0 || codeOutput == 6 || codeOutput == 8 || codeOutput == 5) { // COMANDOS SIN PARAMETROS
+  else if (codeOutput == 0 || codeOutput == 6 || codeOutput == 8 || codeOutput == 5 || codeOutput == 1 || codeOutput == 9) { // COMANDOS SIN PARAMETROS
     if (strcmp(argumento1, "") != 0 || strcmp(argumento2, "") != 0) {
       printf("Error: Demasiados argumentos\n");
       codeOutput = -1;
@@ -87,6 +93,13 @@ int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argu
 // TODO: (CREO QUE LA PRIMERA TAMBIEN IMPLICA EN ESO)
 
 int buscaFich(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, char *nombre) {
+
+  for (int i = 0; i < MAX_FICHEROS; i++) { 
+    if (directorio[i].dir_inodo != NULL_INODO && strcmp(directorio[i].dir_nfich, nombre) == 0) { 
+      return directorio[i].dir_inodo; 
+      } 
+  } 
+  return NULL_INODO;
 
 }
 
