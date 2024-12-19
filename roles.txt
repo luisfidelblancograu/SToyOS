@@ -5,8 +5,8 @@ remove
 copy
 
 FIDEL:
-comprobarComando
-info
-bytemaps
-main
-rename
+comprobarComando - DONE
+info - DONE
+bytemaps - DONE
+main - EN ESPERA
+rename - EN ESPERA
