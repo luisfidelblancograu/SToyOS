@@ -2,7 +2,7 @@ PEDRO:
 dir -> DONE
 rename - EN ESPERA
 remove
-copy
+copy -> DONE
 
 FIDEL:
 comprobarComando - DONE

@@ -16,7 +16,7 @@ int copy(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, EXT_BYTE_MAPS *ext
         return -1;
     }
 
-    // Verificar nombre de destino
+    // Verificar nombre de destino (y que no exista ya)
     if (buscaFich(directorio, inodos, nombredestino) != NULL_INODO) {
         printf("Error: El archivo de destino '%s' ya existe.\n", nombredestino);
         return -1;
@@ -71,7 +71,7 @@ int copy(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, EXT_BYTE_MAPS *ext
         }
     }
 
-    //Guardar cambios usando funciones reutilizables
+    // Persistencia
     grabarinodosydirectorio(directorio, inodos, fich);
     grabarByteMaps(ext_bytemaps, fich);
     grabarSuperBloque(ext_superblock, fich);

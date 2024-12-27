@@ -61,21 +61,11 @@ int main()
 
       case 2: // ORDEN RENAME
       case 3: // ORDEN REMOVE
+        del(directorio, &ext_blq_inodos, &ext_bytemaps, &ext_superblock, argumento1, fent);
+        break;
       case 4: // ORDEN COPY
-        int resultado = copy(directorio, &ext_blq_inodos, &ext_bytemaps, &ext_superblock, 
-                         memdatos, argumento1, argumento2, fent);
-
-        // Copia Exitosa
-        if (resultado == 0) {
-          // Actualizar Metadatos
-          grabarinodosydirectorio(directorio, &ext_blq_inodos, fent);
-          grabarByteMaps(&ext_bytemaps, fent);
-          grabarSuperBloque(&ext_superblock, fent);
-          if (grabardatos) {
-              grabarDatos(memdatos, fent);
-          }
-          grabardatos = 0;
-        }
+        copy(directorio, &ext_blq_inodos, &ext_bytemaps, &ext_superblock, 
+          memdatos, argumento1, argumento2, fent);
         break;
 
       case 5: // ORDEN INFO
