@@ -6,7 +6,7 @@
 
 int del(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos,
            EXT_BYTE_MAPS *ext_bytemaps, EXT_SIMPLE_SUPERBLOCK *ext_superblock,
-           char *nombre, FILE *fich) {
+           char *nombre) {
     
     // Buscar el archivo en el directorio
     int inodo_index = buscaFich(directorio, inodos, nombre); 
@@ -40,11 +40,6 @@ int del(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos,
         }
     }
 
-    // Persistencia
-    grabarinodosydirectorio(directorio, inodos, fich); 
-    grabarByteMaps(ext_bytemaps, fich); 
-    grabarSuperBloque(ext_superblock, fich); 
-    
     return 0;
 }
 

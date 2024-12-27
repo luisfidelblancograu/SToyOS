@@ -52,7 +52,7 @@ int main()
     switch (codeOutput) {
       case 0: // ORDEN SALIR
         printf("Apagando el equipo...\n");
-        salir(memdatos, fent);
+        salir(directorio, &ext_blq_inodos, &ext_bytemaps, &ext_superblock, memdatos, fent);
         break;
 
       case 1: // ORDEN DIRECTORIO
@@ -60,12 +60,14 @@ int main()
         break;
 
       case 2: // ORDEN RENAME
+        renombrar(directorio, &ext_blq_inodos, argumento1, argumento2);
+        break;
       case 3: // ORDEN REMOVE
-        del(directorio, &ext_blq_inodos, &ext_bytemaps, &ext_superblock, argumento1, fent);
+        del(directorio, &ext_blq_inodos, &ext_bytemaps, &ext_superblock, argumento1);
         break;
       case 4: // ORDEN COPY
         copy(directorio, &ext_blq_inodos, &ext_bytemaps, &ext_superblock, 
-          memdatos, argumento1, argumento2, fent);
+          memdatos, argumento1, argumento2);
         break;
 
       case 5: // ORDEN INFO

@@ -7,7 +7,7 @@
 
 int copy(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, EXT_BYTE_MAPS *ext_bytemaps, 
             EXT_SIMPLE_SUPERBLOCK *ext_superblock, EXT_DATOS *memdatos, char *nombreorigen, 
-            char *nombredestino,  FILE *fich) 
+            char *nombredestino) 
 {
     //Buscar archivo origen
     int inodo_origen = buscaFich(directorio, inodos, nombreorigen);
@@ -70,12 +70,6 @@ int copy(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, EXT_BYTE_MAPS *ext
             break;
         }
     }
-
-    // Persistencia
-    grabarinodosydirectorio(directorio, inodos, fich);
-    grabarByteMaps(ext_bytemaps, fich);
-    grabarSuperBloque(ext_superblock, fich);
-    grabarDatos(memdatos, fich);
 
     return 0;
 }

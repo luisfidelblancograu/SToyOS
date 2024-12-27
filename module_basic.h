@@ -119,36 +119,39 @@ int buscaFich(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, char *nombre)
 
 // ! NOTA: SI SE REQUIERE HACER CODIGO INVIDUALMENTE PARA CASO, AVISAME POR MD PARA QUE LO PREPARE
 
-void grabarinodosydirectorio(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, FILE *fich) {
+void grabarinodosydirectorio(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, FILE *fent) {
   // Escribir los inodos
-    fseek(fich, SIZE_BLOQUE * 2, SEEK_SET); // Bloque 2 contiene los inodos
-    fwrite(inodos, SIZE_BLOQUE, 1, fich);
+    fseek(fent, SIZE_BLOQUE * 2, SEEK_SET); // Bloque 2 contiene los inodos
+    fwrite(inodos, SIZE_BLOQUE, 1, fent);
 
     // Escribir el directorio
-    fseek(fich, SIZE_BLOQUE * 3, SEEK_SET); // Bloque 3 contiene el directorio
-    fwrite(directorio, SIZE_BLOQUE, 1, fich);
+    fseek(fent, SIZE_BLOQUE * 3, SEEK_SET); // Bloque 3 contiene el directorio
+    fwrite(directorio, SIZE_BLOQUE, 1, fent);
 }
-void grabarByteMaps(EXT_BYTE_MAPS *ext_bytemaps, FILE *fich) {
-    fseek(fich, SIZE_BLOQUE, SEEK_SET); // Bloque 1 contiene los bytemaps
-    fwrite(ext_bytemaps, SIZE_BLOQUE, 1, fich);
+void grabarByteMaps(EXT_BYTE_MAPS *ext_bytemaps, FILE *fent) {
+    fseek(fent, SIZE_BLOQUE, SEEK_SET); // Bloque 1 contiene los bytemaps
+    fwrite(ext_bytemaps, SIZE_BLOQUE, 1, fent);
 }
-void grabarSuperBloque(EXT_SIMPLE_SUPERBLOCK *ext_superblock, FILE *fich) {
-  fseek(fich, 0, SEEK_SET); // Bloque 0 contiene el superbloque
-  fwrite(ext_superblock, SIZE_BLOQUE, 1, fich);
+void grabarSuperBloque(EXT_SIMPLE_SUPERBLOCK *ext_superblock, FILE *fent) {
+  fseek(fent, 0, SEEK_SET); // Bloque 0 contiene el superbloque
+  fwrite(ext_superblock, SIZE_BLOQUE, 1, fent);
 }
-void grabarDatos(EXT_DATOS *memdatos, FILE *fich) {
-  fseek(fich, SIZE_BLOQUE * 4, SEEK_SET); // Bloques de datos comienzan en el bloque 4
-  fwrite(memdatos, SIZE_BLOQUE, MAX_BLOQUES_DATOS, fich);
+void grabarDatos(EXT_DATOS *memdatos, FILE *fent) {
+  fseek(fent, SIZE_BLOQUE * 4, SEEK_SET); // Bloques de datos comienzan en el bloque 4
+  fwrite(memdatos, SIZE_BLOQUE, MAX_BLOQUES_DATOS, fent);
 }
 
 // TODO: EXIT
-void salir(EXT_DATOS* memDatos, FILE* fent) {
+void salir(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, EXT_BYTE_MAPS *ext_bytemaps,
+           EXT_SIMPLE_SUPERBLOCK *ext_superblock, EXT_DATOS *memdatos, FILE *fent) {
+    // Guardar los cambios en el archivo binario
+    grabarinodosydirectorio(directorio, inodos, fent);
+    grabarByteMaps(ext_bytemaps, fent);
+    grabarSuperBloque(ext_superblock, fent);
+    grabarDatos(memdatos, fent);
 
-
-  //TODO: Si el comando es salir se habrán escrito todos los metadatos
-  //TODO: faltan los datos y cerrar
-  // grabarDatos(memDatos, fent);
-  fclose(fent);
+    // Cerrar el archivo
+    fclose(fent);
 
   exit(0);
 }
