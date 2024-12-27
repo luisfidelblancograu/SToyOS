@@ -6,9 +6,21 @@
 char *comandos[] = {"exit", "dir", "rename", "remove", "copy", "info", "bytemaps", "print", "help"};
 
 // TODO: DIR
-void dir(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos) {
-  
+void dir(EXT_ENTRADA_DIR* directorio, EXT_BLQ_INODOS* inodos) {
+    for (int i = 0; i < MAX_FICHEROS; i++) {
+        if (directorio[i].dir_inodo != 0xFFFF) {
+            EXT_SIMPLE_INODE* inodo = &inodos->blq_inodos[directorio[i].dir_inodo];
+            printf("Nombre: %s, Tamaño: %u bytes, Bloques: ", directorio[i].dir_nfich, inodo->size_fichero);
+            for (int j = 0; j < MAX_NUMS_BLOQUE_INODO; j++) {
+                if (inodo->i_nbloque[j] != 0xFFFF) {
+                    printf("%d ", inodo->i_nbloque[j]);
+                }
+            }
+            printf("\n");
+        }
+    }
 }
+
 
 void help() {
   printf("Los comandos que puede utilizar son:\n");
@@ -33,7 +45,7 @@ int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argu
   strcpy(argumento2, "");
 
   sscanf(strcomando, "%s %s %s", orden, argumento1, argumento2);
-
+  
   /*
   printf("Orden: %s\n", orden);
   printf("Argumento 1: %s\n", argumento1);
@@ -52,7 +64,7 @@ int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argu
   // help ==> 8
   // debug ==> 9
 
-  for (int i = 0; i <= 9; i++) {
+  for (int i = 0; i < sizeof(comandos) / sizeof(comandos[0]); i++) {
     if (strcmp(orden, comandos[i]) == 0) codeOutput = i;
   }
 
