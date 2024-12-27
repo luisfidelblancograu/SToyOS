@@ -1,6 +1,6 @@
 PEDRO:
-dir
-imprimir
+dir -> DONE
+rename - EN ESPERA
 remove
 copy
 
@@ -9,4 +9,4 @@ comprobarComando - DONE
 info - DONE
 bytemaps - DONE
 main - EN ESPERA
-rename - EN ESPERA
+imprimir -> DONE (IDK)

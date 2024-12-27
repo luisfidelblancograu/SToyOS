@@ -62,17 +62,20 @@ int main()
       case 2: // ORDEN RENAME
       case 3: // ORDEN REMOVE
       case 4: // ORDEN COPY
+        int resultado = copy(directorio, &ext_blq_inodos, &ext_bytemaps, &ext_superblock, 
+                         memdatos, argumento1, argumento2, fent);
 
-        // Escritura de metadatos en comandos rename, remove, copy  
-        /*   
-        grabarinodosydirectorio(&directorio,&ext_blq_inodos,fent);
-        grabarByteMaps(&ext_bytemaps,fent);
-        grabarSuperBloque(&ext_superblock,fent);
-        if (grabardatos){
-          grabarDatos(&memdatos,fent);
+        // Copia Exitosa
+        if (resultado == 0) {
+          // Actualizar Metadatos
+          grabarinodosydirectorio(directorio, &ext_blq_inodos, fent);
+          grabarByteMaps(&ext_bytemaps, fent);
+          grabarSuperBloque(&ext_superblock, fent);
+          if (grabardatos) {
+              grabarDatos(memdatos, fent);
+          }
+          grabardatos = 0;
         }
-        grabardatos = 0;
-        */
         break;
 
       case 5: // ORDEN INFO
