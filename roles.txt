@@ -1,7 +1,7 @@
 PEDRO:
 dir -> DONE
-rename - EN ESPERA
-remove
+rename -> DONE
+remove -> DONE
 copy -> DONE
 
 FIDEL:
