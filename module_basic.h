@@ -3,7 +3,7 @@
 
 #include "cabeceras.h"
 
-char *comandos[] = {"exit", "dir", "rename", "remove", "copy", "info", "bytemaps", "print", "help"};
+char *comandos[] = {"exit", "dir", "rename", "remove", "copy", "info", "bytemaps", "print", "help", "debug"};
 
 
 void dir(EXT_ENTRADA_DIR* directorio, EXT_BLQ_INODOS* inodos) {
@@ -66,7 +66,7 @@ int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argu
   // help ==> 8
   // debug ==> 9
 
-  for (int i = 0; i < sizeof(comandos) / sizeof(comandos[0]); i++) {
+  for (int i = 0; i < 9; i++) {
     if (strcmp(orden, comandos[i]) == 0) codeOutput = i;
   }
 
