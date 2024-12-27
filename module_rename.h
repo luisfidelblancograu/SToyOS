@@ -22,9 +22,9 @@ int renombrar(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, char *nombreA
     // Renombrar el archivo
     for (int i = 0; i < MAX_FICHEROS; i++) {
         if (directorio[i].dir_inodo == dir_index_antiguo) {
+            // Copiar al nuevo nombre
             strncpy(directorio[i].dir_nfich, nombreNuevo, LEN_NFICH);
-            directorio[i].dir_nfich[LEN_NFICH - 1] = '\0'; // Asegurar terminación nula
-            printf("El archivo '%s' ha sido renombrado a '%s'.\n", nombreAntiguo, nombreNuevo);
+            directorio[i].dir_nfich[LEN_NFICH - 1] = '\0';
             return 0;
         }
     }
