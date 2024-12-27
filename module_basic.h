@@ -5,20 +5,22 @@
 
 char *comandos[] = {"exit", "dir", "rename", "remove", "copy", "info", "bytemaps", "print", "help"};
 
-// TODO: DIR
+
 void dir(EXT_ENTRADA_DIR* directorio, EXT_BLQ_INODOS* inodos) {
-    for (int i = 0; i < MAX_FICHEROS; i++) {
-        if (directorio[i].dir_inodo != 0xFFFF) {
-            EXT_SIMPLE_INODE* inodo = &inodos->blq_inodos[directorio[i].dir_inodo];
-            printf("Nombre: %s, Tamaño: %u bytes, Bloques: ", directorio[i].dir_nfich, inodo->size_fichero);
-            for (int j = 0; j < MAX_NUMS_BLOQUE_INODO; j++) {
-                if (inodo->i_nbloque[j] != 0xFFFF) {
-                    printf("%d ", inodo->i_nbloque[j]);
-                }
-            }
-            printf("\n");
+  for (int i = 1; i < MAX_FICHEROS; i++) {
+    if (directorio[i].dir_inodo != 0xFFFF) {
+      
+      EXT_SIMPLE_INODE* inodo = &inodos->blq_inodos[directorio[i].dir_inodo];
+      printf("%s\t tamaño:%u\t inodo:%u bloques: ", directorio[i].dir_nfich, inodo->size_fichero, directorio[i].dir_inodo);
+
+      for (int j = 0; j < MAX_NUMS_BLOQUE_INODO; j++) {
+        if (inodo->i_nbloque[j] != 0xFFFF) {
+            printf("%d ", inodo->i_nbloque[j]);
         }
+      }
+      printf("\n");
     }
+  }
 }
 
 
