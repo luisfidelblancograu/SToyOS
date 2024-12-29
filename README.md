@@ -1,6 +1,6 @@
 # SToyOs
 
-![SToyOs Logo](assets\logo.png)
+![SToyOs Logo](/assets/logo.png)
 
 Bienvenido a **SToyOs**, un sistema operativo primario. Es el proyecto final de Sistemas Operativos de U-TAD.
 Desarrollado por Fidel Blanco Grau y Pedro Pérez Montero. 
