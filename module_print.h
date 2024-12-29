@@ -45,8 +45,8 @@ int print(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos,
       for (int i = 0; i < MAX_NUMS_BLOQUE_INODO; i++) {
         if (inodo_fichero.i_nbloque[i] != NULL_BLOQUE) {
           bloqueActual = inodo_fichero.i_nbloque[i] - 4;
-          printf("Debug: Bloque de Datos Logico: %d\n", inodo_fichero.i_nbloque[i]);
-          printf("Debug: Bloque de Datos Real: %d\n", bloqueActual);
+          // printf("Debug: Bloque de Datos Logico: %d\n", inodo_fichero.i_nbloque[i]);
+          // printf("Debug: Bloque de Datos Real: %d\n", bloqueActual);
           for (int j = 0; j < SIZE_BLOQUE; j++) {
 
             if (tam != 0) {
