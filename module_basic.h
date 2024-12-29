@@ -66,7 +66,7 @@ int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argu
   // help ==> 8
   // debug ==> 9
 
-  for (int i = 0; i < 9; i++) {
+  for (int i = 0; i <= 9; i++) {
     if (strcmp(orden, comandos[i]) == 0) codeOutput = i;
   }
 

@@ -56,7 +56,7 @@ int copy(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, EXT_BYTE_MAPS *ext
                 return -1;
             }
             inodo_dest->i_nbloque[i] = bloque_destino;
-            memcpy(&memdatos[bloque_destino], &memdatos[inodo_src->i_nbloque[i]], SIZE_BLOQUE);
+            memcpy(&memdatos[bloque_destino - 4], &memdatos[inodo_src->i_nbloque[i]] - 4, SIZE_BLOQUE); // Hay un .dato en source
         } else {
             inodo_dest->i_nbloque[i] = 0xFFFF;
         }
