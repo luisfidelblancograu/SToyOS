@@ -7,7 +7,6 @@
 #include "module_basic.h"
 #include "module_copy.h"
 #include "module_delete.h"
-#include "module_info.h"
 #include "module_print.h"
 #include "module_rename.h"
 
@@ -71,7 +70,7 @@ int main()
         break;
 
       case 5: // ORDEN INFO
-        info(&ext_superblock);
+        readSuperBlock(&ext_superblock);
         break;
 
       case 6: // ORDEN BYTEMAPS

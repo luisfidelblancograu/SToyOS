@@ -5,7 +5,7 @@
 
 char *comandos[] = {"exit", "dir", "rename", "remove", "copy", "info", "bytemaps", "print", "help", "debug"};
 
-
+// FUNCION DIRECTORIO
 void dir(EXT_ENTRADA_DIR* directorio, EXT_BLQ_INODOS* inodos) {
   for (int i = 1; i < MAX_FICHEROS; i++) {
     if (directorio[i].dir_inodo != 0xFFFF) {
@@ -23,7 +23,6 @@ void dir(EXT_ENTRADA_DIR* directorio, EXT_BLQ_INODOS* inodos) {
   }
 }
 
-
 void help() {
   printf("Los comandos que puede utilizar son:\n");
   printf("dir: Muestra el contenido del directorio\n");
@@ -36,7 +35,7 @@ void help() {
   printf("exit: Cierra la aplicacion\n");
 }
 
-// TODO: CHECK COMMAND
+// FUNCION COMPROBAR COMANDO
 int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argumento2) {
 
   int codeOutput = -1;
@@ -102,10 +101,6 @@ int comprobarComando(char *strcomando, char *orden, char *argumento1, char *argu
 
 }
 
-
-// TODO: TODAS LAS FUNCIONES DE ABAJO IMPLICA EL COPIADO, BORRADO Y RENOMBRADO DE ARCHIVOS 
-// TODO: (CREO QUE LA PRIMERA TAMBIEN IMPLICA EN ESO)
-
 int buscaFich(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, char *nombre) {
 
   for (int i = 0; i < MAX_FICHEROS; i++) { 
@@ -117,7 +112,6 @@ int buscaFich(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, char *nombre)
 
 }
 
-// ! NOTA: SI SE REQUIERE HACER CODIGO INVIDUALMENTE PARA CASO, AVISAME POR MD PARA QUE LO PREPARE
 
 void grabarinodosydirectorio(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, FILE *fent) {
   // Escribir los inodos
@@ -141,7 +135,6 @@ void grabarDatos(EXT_DATOS *memdatos, FILE *fent) {
   fwrite(memdatos, SIZE_BLOQUE, MAX_BLOQUES_DATOS, fent);
 }
 
-// TODO: EXIT
 void salir(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, EXT_BYTE_MAPS *ext_bytemaps,
            EXT_SIMPLE_SUPERBLOCK *ext_superblock, EXT_DATOS *memdatos, FILE *fent) {
     // Guardar los cambios en el archivo binario

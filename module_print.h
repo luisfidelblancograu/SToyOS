@@ -14,6 +14,7 @@ void printMemDatos(EXT_DATOS *memdatos) {
   }
 }
 
+// FUNCION IMPRIMIR
 int print(EXT_ENTRADA_DIR *directorio, EXT_BLQ_INODOS *inodos, 
              EXT_DATOS *memdatos, char *nombre) {
 
@@ -80,6 +81,7 @@ void printByteMaps(EXT_BYTE_MAPS *ext_bytemaps) {
 
 }
 
+// FUNCION LEESUPERBLOQUE
 void readSuperBlock(EXT_SIMPLE_SUPERBLOCK *psup) {
   printf("Bloque %d Bytes\n", psup->s_block_size);
   printf("Inodos particion: %d\n", psup->s_inodes_count);
